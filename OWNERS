@@ -1,11 +1,12 @@
 # The OWNERS file is used by prow to automatically merge approved PRs.
 
 approvers:
-- technical-oversight-committee
-- knative-release-leads
-- networking-wg-leads
-- net-kourier-approvers
-
+- alanfx
+- markusthoemmes
+- mgencur
+- warrenvw
 reviewers:
-- networking-wg-leads
-- net-kourier-approvers
+- alanfx
+- markusthoemmes
+- mgencur
+- warrenvw
