@@ -1,4 +1,4 @@
-FROM registry.ci.openshift.org/openshift/release:golang-1.16 AS builder
+FROM registry.ci.openshift.org/openshift/release:golang-1.17 AS builder
 WORKDIR /app/
 COPY . .
 RUN go build -mod vendor -o /tmp/kourier ./cmd/kourier
