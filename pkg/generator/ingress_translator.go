@@ -19,6 +19,7 @@ package generator
 import (
 	"context"
 	"fmt"
+	"os"
 	"time"
 
 	v3 "github.com/envoyproxy/go-control-plane/envoy/config/cluster/v3"
@@ -175,10 +176,18 @@ func (translator *IngressTranslator) translateIngress(ctx context.Context, ingre
 			}
 
 			if len(wrs) != 0 {
-				routes = append(routes, envoy.NewRoute(
-					pathName, matchHeadersFromHTTPPath(httpPath), path, wrs, 0, httpPath.AppendHeaders, httpPath.RewriteHost))
+				// Do not create redirect route when KOURIER_HTTPOPTION_DISABLED is set. This option is useful when front end proxy handles the redirection.
+				// e.g. Kourier on OpenShift handles HTTPOption by OpenShift Route so KOURIER_HTTPOPTION_DISABLED should be set.
+				if _, ok := os.LookupEnv("KOURIER_HTTPOPTION_DISABLED"); !ok && ingress.Spec.HTTPOption == v1alpha1.HTTPOptionRedirected && rule.Visibility == v1alpha1.IngressVisibilityExternalIP {
+					routes = append(routes, envoy.NewRedirectRoute(
+						pathName, matchHeadersFromHTTPPath(httpPath), path))
+				} else {
+					routes = append(routes, envoy.NewRoute(
+						pathName, matchHeadersFromHTTPPath(httpPath), path, wrs, 0, httpPath.AppendHeaders, httpPath.RewriteHost))
+				}
 				if len(ingress.Spec.TLS) != 0 {
-					tlsRoutes = append(tlsRoutes, routes...)
+					tlsRoutes = append(tlsRoutes, envoy.NewRoute(
+						pathName, matchHeadersFromHTTPPath(httpPath), path, wrs, 0, httpPath.AppendHeaders, httpPath.RewriteHost))
 				}
 			}
 		}
