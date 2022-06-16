@@ -170,7 +170,7 @@ github.com/grpc-ecosystem/grpc-gateway/utilities
 ## explicit; go 1.12
 github.com/hashicorp/golang-lru
 github.com/hashicorp/golang-lru/simplelru
-# github.com/imdario/mergo v0.3.5
+# github.com/imdario/mergo v0.3.9 => github.com/imdario/mergo v0.3.5
 ## explicit
 github.com/imdario/mergo
 # github.com/josharian/intern v1.0.0
@@ -936,10 +936,13 @@ k8s.io/utils/lru
 k8s.io/utils/net
 k8s.io/utils/pointer
 k8s.io/utils/trace
-# knative.dev/hack v0.0.0-20220524153203-12d3e2a7addc
+# knative.dev/control-protocol v0.0.0-20220610133426-4a1c8e84039f
+## explicit; go 1.17
+knative.dev/control-protocol/pkg/certificates
+# knative.dev/hack v0.0.0-20220610014127-dc6c287516dc => knative.dev/hack v0.0.0-20220524153203-12d3e2a7addc
 ## explicit; go 1.14
 knative.dev/hack
-# knative.dev/networking v0.0.0-20220524205304-22d1b933cf73
+# knative.dev/networking v0.0.0-20220614203516-07c9d7614c61
 ## explicit; go 1.17
 knative.dev/networking/config
 knative.dev/networking/pkg
@@ -979,7 +982,7 @@ knative.dev/networking/test/test_images/runtime/handlers
 knative.dev/networking/test/test_images/timeout
 knative.dev/networking/test/test_images/wsserver
 knative.dev/networking/test/types
-# knative.dev/pkg v0.0.0-20220524202603-19adf798efb8
+# knative.dev/pkg v0.0.0-20220610014025-7d607d643ee2 => knative.dev/pkg v0.0.0-20220524202603-19adf798efb8
 ## explicit; go 1.17
 knative.dev/pkg/apis
 knative.dev/pkg/apis/duck
@@ -1058,3 +1061,6 @@ sigs.k8s.io/structured-merge-diff/v4/value
 # sigs.k8s.io/yaml v1.3.0
 ## explicit; go 1.12
 sigs.k8s.io/yaml
+# github.com/imdario/mergo => github.com/imdario/mergo v0.3.5
+# knative.dev/hack => knative.dev/hack v0.0.0-20220524153203-12d3e2a7addc
+# knative.dev/pkg => knative.dev/pkg v0.0.0-20220524202603-19adf798efb8
