@@ -1,0 +1,25 @@
+diff --git a/openshift/release/artifacts/0-kourier.yaml b/openshift/release/artifacts/0-kourier.yaml
+index 7eb03ed2..019d4d18 100644
+--- a/openshift/release/artifacts/0-kourier.yaml
++++ b/openshift/release/artifacts/0-kourier.yaml
+@@ -260,6 +260,11 @@ metadata:
+     app.kubernetes.io/name: knative-serving
+     serving.knative.dev/release: "v1.3.0"
+ spec:
++  strategy:
++    type: RollingUpdate
++    rollingUpdate:
++      maxUnavailable: 0
++      maxSurge: 100%
+   replicas: 1
+   selector:
+     matchLabels:
+@@ -348,7 +353,7 @@ spec:
+     type: RollingUpdate
+     rollingUpdate:
+       maxUnavailable: 0
+-      maxSurge: 1
++      maxSurge: 100%
+   selector:
+     matchLabels:
+       app: 3scale-kourier-gateway
