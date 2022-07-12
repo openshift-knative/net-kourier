@@ -24,4 +24,5 @@ require (
 	knative.dev/pkg v0.0.0-20220301181942-2fdd5f232e77
 )
 
+// Enforce a version for CVE-2022-21698
 replace github.com/prometheus/client_golang => github.com/prometheus/client_golang v1.11.1
