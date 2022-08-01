@@ -21,6 +21,7 @@ import (
 
 	"knative.dev/net-kourier/pkg/config"
 	network "knative.dev/networking/pkg"
+	netconfig "knative.dev/networking/pkg/config"
 	"knative.dev/pkg/configmap"
 )
 
@@ -48,10 +49,9 @@ func FromContextOrDefaults(ctx context.Context) *Config {
 	}
 }
 
-func defaultConfig() *network.Config {
-	return &network.Config{
-		ActivatorCA:  "",
-		ActivatorSAN: "",
+func defaultConfig() *netconfig.Config {
+	return &netconfig.Config{
+		InternalEncryption: false,
 	}
 }
 
