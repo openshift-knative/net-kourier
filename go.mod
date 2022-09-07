@@ -20,9 +20,10 @@ require (
 	k8s.io/apimachinery v0.23.5
 	k8s.io/client-go v0.23.5
 	k8s.io/code-generator v0.23.5
-	knative.dev/hack v0.0.0-20220524153203-12d3e2a7addc
-	knative.dev/networking v0.0.0-20220524205304-22d1b933cf73
-	knative.dev/pkg v0.0.0-20220524202603-19adf798efb8
+	knative.dev/control-protocol v0.0.0-20220610133426-4a1c8e84039f
+	knative.dev/hack v0.0.0-20220610014127-dc6c287516dc
+	knative.dev/networking v0.0.0-20220614203516-07c9d7614c61
+	knative.dev/pkg v0.0.0-20220610014025-7d607d643ee2
 )
 
 require (
@@ -54,7 +55,7 @@ require (
 	github.com/googleapis/gnostic v0.5.5 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/grpc-ecosystem/grpc-gateway v1.16.0 // indirect
-	github.com/imdario/mergo v0.3.5 // indirect
+	github.com/imdario/mergo v0.3.9 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
@@ -98,4 +99,10 @@ require (
 	sigs.k8s.io/json v0.0.0-20211020170558-c049b76a60c6 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.2.1 // indirect
 	sigs.k8s.io/yaml v1.3.0 // indirect
+)
+
+replace (
+	github.com/imdario/mergo => github.com/imdario/mergo v0.3.5 // indirect
+	knative.dev/hack => knative.dev/hack v0.0.0-20220524153203-12d3e2a7addc
+	knative.dev/pkg => knative.dev/pkg v0.0.0-20220524202603-19adf798efb8
 )
