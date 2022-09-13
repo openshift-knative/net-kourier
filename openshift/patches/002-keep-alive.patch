@@ -1,0 +1,18 @@
+diff --git a/openshift/release/artifacts/0-kourier.yaml b/openshift/release/artifacts/0-kourier.yaml
+index 1731e709..62d50e06 100644
+--- a/openshift/release/artifacts/0-kourier.yaml
++++ b/openshift/release/artifacts/0-kourier.yaml
+@@ -120,6 +120,13 @@ data:
+                       address: "net-kourier-controller"
+                       port_value: 18000
+           http2_protocol_options: {}
++          common_http_protocol_options:
++            idle_timeout: { seconds: 30 }
++          upstream_connection_options:
++            tcp_keepalive
++              keepalive_probes: 1
++              keepalive_time: 10
++              keepalive_interval: 10
+           type: STRICT_DNS
+     admin:
+       access_log_path: "/dev/stdout"
