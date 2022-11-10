@@ -3,7 +3,7 @@ index f6136093..bdb44db0 100644
 --- a/openshift/release/artifacts/0-kourier.yaml
 +++ b/openshift/release/artifacts/0-kourier.yaml
 @@ -289,6 +289,11 @@ metadata:
-     app.kubernetes.io/version: "1.5.0"
+     app.kubernetes.io/version: "1.6.0"
      app.kubernetes.io/name: knative-serving
  spec:
 +  strategy:
