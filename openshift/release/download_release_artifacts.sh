@@ -37,3 +37,4 @@ sed -i -e '/labels:$/a \    networking.knative.dev\/ingress-provider: kourier' "
 # TODO: Can probably be removed in 1.21 and/or be sent upstream.
 git apply "${patches_path}/001-kourier-rollout.patch"
 git apply "${patches_path}/002-backport.patch"
+git apply "${patches_path}/003-keepalive.patch"
