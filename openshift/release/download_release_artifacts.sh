@@ -36,3 +36,5 @@ sed -i -e '/labels:$/a \    networking.knative.dev\/ingress-provider: kourier' "
 # Make Kourier rollout in a more defensive way so no requests get dropped.
 # TODO: Can probably be removed in 1.21 and/or be sent upstream.
 git apply "${patches_path}/001-kourier-rollout.patch"
+git apply "${patches_path}/002-backport.patch"
+git apply "${patches_path}/003-keepalive.patch"
