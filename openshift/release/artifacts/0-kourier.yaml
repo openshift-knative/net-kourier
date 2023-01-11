@@ -1,3 +1,4 @@
+---
 # Copyright 2020 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +22,6 @@ metadata:
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/component: net-kourier
     app.kubernetes.io/version: "1.8.0"
-
 ---
 # Copyright 2020 The Knative Authors
 #
@@ -141,7 +141,6 @@ data:
         - name: static-layer
           static_layer:
             envoy.reloadable_features.override_request_timeout_by_gateway_timeout: false
-
 ---
 # Copyright 2021 The Knative Authors
 #
@@ -218,7 +217,6 @@ data:
     #
     # NOTE: This flag is in an alpha state.
     traffic-isolation: ""
-
 ---
 # Copyright 2020 The Knative Authors
 #
@@ -263,7 +261,7 @@ rules:
     verbs: ["get", "list", "watch"]
   - apiGroups: [""]
     resources: ["configmaps"]
-    verbs: ["get", "list", "watch"]
+    verbs: [ "get", "list", "watch" ]
   - apiGroups: [""]
     resources: ["namespaces"]
     verbs: ["get", "list", "watch"]
@@ -294,7 +292,6 @@ subjects:
   - kind: ServiceAccount
     name: net-kourier
     namespace: knative-serving
-
 ---
 # Copyright 2020 The Knative Authors
 #
@@ -336,7 +333,7 @@ spec:
         app: net-kourier-controller
     spec:
       containers:
-        - image: gcr.io/knative-releases/knative.dev/net-kourier/cmd/kourier@sha256:2e3367f5e81aa1140a9f467ecc21b9ce1826b6a9fc3c37cf1e65656c7e1fb22e
+        - image: ko://knative.dev/net-kourier/cmd/kourier
           name: controller
           env:
             - name: CERTS_SECRET_NAMESPACE
@@ -354,9 +351,9 @@ spec:
             - name: ENABLE_SECRET_INFORMER_FILTERING_BY_CERT_UID
               value: "false"
           ports:
-            - name: http2-xds
-              containerPort: 18000
-              protocol: TCP
+          - name: http2-xds
+            containerPort: 18000
+            protocol: TCP
           readinessProbe:
             exec:
               command: ["/ko-app/kourier", "-probe-addr=:18000"]
@@ -391,7 +388,6 @@ spec:
   selector:
     app: net-kourier-controller
   type: ClusterIP
-
 ---
 # Copyright 2020 The Knative Authors
 #
@@ -477,7 +473,7 @@ spec:
           lifecycle:
             preStop:
               exec:
-                command: ["/bin/sh", "-c", "curl -X POST --unix /tmp/envoy.admin http://localhost/healthcheck/fail; sleep 15"]
+                command: ["/bin/sh","-c","curl -X POST --unix /tmp/envoy.admin http://localhost/healthcheck/fail; sleep 15"]
           readinessProbe:
             httpGet:
               httpHeaders:
@@ -541,5 +537,3 @@ spec:
   selector:
     app: 3scale-kourier-gateway
   type: ClusterIP
-
----
