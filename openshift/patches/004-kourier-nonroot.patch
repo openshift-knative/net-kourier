@@ -1,0 +1,13 @@
+diff --git a/openshift/release/artifacts/0-kourier.yaml b/openshift/release/artifacts/0-kourier.yaml
+index aa13d9bc..5e5597b3 100644
+--- a/openshift/release/artifacts/0-kourier.yaml
++++ b/openshift/release/artifacts/0-kourier.yaml
+@@ -463,7 +463,7 @@ spec:
+           securityContext:
+             allowPrivilegeEscalation: false
+             readOnlyRootFilesystem: false
+-            runAsNonRoot: false
++            runAsNonRoot: true
+             capabilities:
+               drop:
+                 - all
