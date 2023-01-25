@@ -1,3 +1,4 @@
+---
 # Copyright 2018 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +22,7 @@ metadata:
     app.kubernetes.io/name: knative-serving
     app.kubernetes.io/component: kourier
     networking.knative.dev/ingress-provider: kourier
-    app.kubernetes.io/version: devel
+    app.kubernetes.io/version: "1.9.0"
   annotations:
     knative.dev/example-checksum: "73d96d1b"
 data:
