@@ -1,0 +1,14 @@
+diff --git a/vendor/knative.dev/networking/config/config-network.yaml b/vendor/knative.dev/networking/config/config-network.yaml
+index 39cbc4a1..352be87b 100644
+--- a/vendor/knative.dev/networking/config/config-network.yaml
++++ b/vendor/knative.dev/networking/config/config-network.yaml
+@@ -19,7 +19,8 @@ metadata:
+   namespace: knative-serving
+   labels:
+     app.kubernetes.io/name: knative-serving
+-    app.kubernetes.io/component: networking
++    app.kubernetes.io/component: kourier
++    networking.knative.dev/ingress-provider: kourier
+     app.kubernetes.io/version: devel
+   annotations:
+     knative.dev/example-checksum: "73d96d1b"
