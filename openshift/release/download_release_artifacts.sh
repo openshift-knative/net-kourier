@@ -47,8 +47,8 @@ readonly CONFIG_NETWORK="vendor/knative.dev/networking/config/config-network.yam
 
 patches_path="${SCRIPT_DIR}/../patches"
 
-# TODO: [SRVKS-610] These values should be replaced by operator instead of sed.
-git apply "${patches_path}/001-service-location.patch"
+# TODO: [SRVKS-610] 001-service-location.patch should be replaced by operator instead of sed.
+git apply "${patches_path}"/*
 
 # Add label to the config-network, which is deployed in knative-serving-ingress namespace.
 sed -i -e 's/app.kubernetes.io\/component: networking/app.kubernetes.io\/component: kourier\n    networking.knative.dev\/ingress-provider: kourier/' "$CONFIG_NETWORK"
