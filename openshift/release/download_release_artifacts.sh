@@ -43,7 +43,7 @@ rm -rf "$YAML_OUTPUT_DIR"
 mkdir -p "$YAML_OUTPUT_DIR"
 
 readonly CONFIG_NETWORK="vendor/knative.dev/networking/config/config-network.yaml"
-cp "$CONFIG_NETWORK" 200-config.yaml
+cp "$CONFIG_NETWORK" config/200-config-network.yaml
 
 patches_path="${SCRIPT_DIR}/../patches"
 

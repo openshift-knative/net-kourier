@@ -1,7 +1,7 @@
-diff --git a/vendor/knative.dev/networking/config/config-network.yaml b/vendor/knative.dev/networking/config/config-network.yaml
+diff --git a/config/200-config-network.yaml b/config/200-config-network.yaml
 index 39cbc4a1..352be87b 100644
---- a/vendor/knative.dev/networking/config/config-network.yaml
-+++ b/vendor/knative.dev/networking/config/config-network.yaml
+--- a/config/200-config-network.yaml
++++ b/config/200-config-network.yaml
 @@ -19,7 +19,8 @@ metadata:
    namespace: knative-serving
    labels:
