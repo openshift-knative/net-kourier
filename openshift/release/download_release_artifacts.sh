@@ -37,13 +37,13 @@ function resolve_file() {
 
 readonly YAML_OUTPUT_DIR="openshift/release/artifacts/"
 readonly KOURIER_YAML=${YAML_OUTPUT_DIR}/0-kourier.yaml
-readonly CONFIG_NETWORK_YAML=${YAML_OUTPUT_DIR}/1-config-network.yaml
 
 # Clean up
 rm -rf "$YAML_OUTPUT_DIR"
 mkdir -p "$YAML_OUTPUT_DIR"
 
 readonly CONFIG_NETWORK="vendor/knative.dev/networking/config/config-network.yaml"
+cp "$CONFIG_NETWORK" 200-config.yaml
 
 patches_path="${SCRIPT_DIR}/../patches"
 
@@ -51,4 +51,3 @@ patches_path="${SCRIPT_DIR}/../patches"
 git apply "${patches_path}"/*
 
 resolve_resources "config/" "$KOURIER_YAML"
-resolve_resources "vendor/knative.dev/networking/config/config-network.yaml" "$CONFIG_NETWORK_YAML"
