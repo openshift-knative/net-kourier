@@ -1,0 +1,31 @@
+diff --git a/config/300-controller.yaml b/config/300-controller.yaml
+index ed129602..b6daeba7 100644
+--- a/config/300-controller.yaml
++++ b/config/300-controller.yaml
+@@ -69,8 +69,6 @@ spec:
+             capabilities:
+               drop:
+                 - ALL
+-            seccompProfile:
+-              type: RuntimeDefault
+       restartPolicy: Always
+       serviceAccountName: net-kourier
+ ---
+diff --git a/config/300-gateway.yaml b/config/300-gateway.yaml
+index 969c0b73..9a3a4213 100644
+--- a/config/300-gateway.yaml
++++ b/config/300-gateway.yaml
+@@ -69,13 +69,9 @@ spec:
+             allowPrivilegeEscalation: false
+             readOnlyRootFilesystem: false
+             runAsNonRoot: true
+-            runAsUser: 65534
+-            runAsGroup: 65534
+             capabilities:
+               drop:
+                 - ALL
+-            seccompProfile:
+-              type: RuntimeDefault
+           volumeMounts:
+             - name: config-volume
+               mountPath: /tmp/config
