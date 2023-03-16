@@ -7,7 +7,7 @@ index 39cbc4a1..352be87b 100644
    labels:
      app.kubernetes.io/name: knative-serving
 -    app.kubernetes.io/component: networking
-+    app.kubernetes.io/component: kourier
++    app.kubernetes.io/component: net-kourier
 +    networking.knative.dev/ingress-provider: kourier
      app.kubernetes.io/version: devel
    annotations:
