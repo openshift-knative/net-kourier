@@ -1,0 +1,13 @@
+diff --git a/config/300-gateway.yaml b/config/300-gateway.yaml
+index 00cbc5d4..dc280b9c 100644
+--- a/config/300-gateway.yaml
++++ b/config/300-gateway.yaml
+@@ -194,7 +194,7 @@ metadata:
+     app.kubernetes.io/version: devel
+     app.kubernetes.io/name: knative-serving
+ spec:
+-  minAvailable: 80%
++  minAvailable: 1
+   selector:
+     matchLabels:
+       app: 3scale-kourier-gateway
