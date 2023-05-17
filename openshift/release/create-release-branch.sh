@@ -17,12 +17,12 @@ release=$1
 
 # Fetch the latest upstream and checkout the new branch.
 git fetch upstream ${release}
-git checkout ${release}
+git checkout upstream/${release}
 
 # Copy the openshift extra files from the OPENSHIFT/main branch.
 git fetch openshift main
-git checkout openshift/main -- openshift OWNERS Dockerfile
-git add openshift OWNERS Dockerfile
+git checkout openshift/main -- openshift OWNERS
+git add openshift OWNERS
 git commit -m "Add openshift specific files."
 
 # Drop the release-suffix and add the micro version with '0'.
