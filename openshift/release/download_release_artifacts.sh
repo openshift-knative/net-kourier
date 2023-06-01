@@ -37,15 +37,16 @@ function resolve_file() {
 
 readonly YAML_OUTPUT_DIR="openshift/release/artifacts/"
 readonly KOURIER_YAML=${YAML_OUTPUT_DIR}/0-kourier.yaml
+readonly CONFIG_NETWORK="vendor/knative.dev/networking/config/config-network.yaml"
+readonly patches_path="${SCRIPT_DIR}/../patches"
 
 # Clean up
 rm -rf "$YAML_OUTPUT_DIR"
 mkdir -p "$YAML_OUTPUT_DIR"
+# clean up before applying patch
+git apply -R "${patches_path}"/* || true
 
-readonly CONFIG_NETWORK="vendor/knative.dev/networking/config/config-network.yaml"
 cp "$CONFIG_NETWORK" config/200-config-network.yaml
-
-patches_path="${SCRIPT_DIR}/../patches"
 
 # TODO: [SRVKS-610] 001-service-location.patch should be replaced by operator instead of sed.
 git apply "${patches_path}"/*

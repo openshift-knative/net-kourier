@@ -33,7 +33,7 @@ jobs:
 
       - name: Regenerate all generated files
         working-directory: ./src/github.com/${{ github.repository }}
-        run: ./openshift/release/create-release-branch.sh ${{ github.base_ref }}
+        run: ./openshift/release/download_release_artifacts.sh ${{ github.base_ref }}
 
       - name: Check if everything is consistent
         working-directory: ./src/github.com/${{ github.repository }}
