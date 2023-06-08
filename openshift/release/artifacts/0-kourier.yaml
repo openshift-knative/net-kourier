@@ -652,7 +652,7 @@ metadata:
   namespace: knative-serving
   labels:
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/component: kourier
+    app.kubernetes.io/component: net-kourier
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/version: "release-v1.10"
 data:
@@ -678,7 +678,7 @@ metadata:
   namespace: knative-serving
   labels:
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/component: kourier
+    app.kubernetes.io/component: net-kourier
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/version: "release-v1.10"
 data:
@@ -704,7 +704,7 @@ metadata:
   namespace: knative-serving
   labels:
     app.kubernetes.io/name: knative-serving
-    app.kubernetes.io/component: kourier
+    app.kubernetes.io/component: net-kourier
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/version: "release-v1.10"
 data:
