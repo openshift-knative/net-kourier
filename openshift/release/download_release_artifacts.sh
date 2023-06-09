@@ -36,7 +36,7 @@ function resolve_file() {
 }
 
 readonly YAML_OUTPUT_DIR="openshift/release/artifacts/"
-readonly KOURIER_YAML=${YAML_OUTPUT_DIR}/0-kourier.yaml
+readonly KOURIER_YAML=${YAML_OUTPUT_DIR}/net-kourier.yaml
 readonly patches_path="${SCRIPT_DIR}/../patches"
 
 # Clean up
