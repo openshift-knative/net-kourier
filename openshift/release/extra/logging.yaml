@@ -23,3 +23,4 @@ metadata:
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/version: devel
 data:
+  _example: ""
