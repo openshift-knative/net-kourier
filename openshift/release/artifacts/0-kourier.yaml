@@ -656,6 +656,7 @@ metadata:
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/version: "release-v1.10"
 data:
+  _example: ""
 ---
 # Copyright 2018 The Knative Authors
 #
@@ -682,6 +683,7 @@ metadata:
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/version: "release-v1.10"
 data:
+  _example: ""
 ---
 # Copyright 2018 The Knative Authors
 #
@@ -708,3 +710,4 @@ metadata:
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/version: "release-v1.10"
 data:
+  _example: ""
