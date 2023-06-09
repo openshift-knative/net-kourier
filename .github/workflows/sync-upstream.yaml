@@ -43,7 +43,7 @@ jobs:
 
       - name: Regenerate all generated files
         working-directory: ./src/github.com/${{ github.repository }}
-        run: ./openshift/release/generate-release.sh ${{ inputs.release }}
+        run: ./openshift/release/download_release_artifacts.sh ${{ inputs.release }}
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
