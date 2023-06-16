@@ -521,7 +521,6 @@ spec:
       containers:
         - image: ko://knative.dev/net-kourier/cmd/kourier
           name: controller
-          command: ["/ko-app/kourier", "-kube-api-burst=200", "-kube-api-qps=200"]
           env:
             - name: CERTS_SECRET_NAMESPACE
               value: ""
