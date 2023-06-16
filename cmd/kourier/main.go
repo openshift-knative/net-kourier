@@ -23,6 +23,7 @@ import (
 	"knative.dev/net-kourier/pkg/config"
 	"knative.dev/net-kourier/pkg/reconciler/informerfiltering"
 	kourierIngressController "knative.dev/net-kourier/pkg/reconciler/ingress"
+	"knative.dev/pkg/environment"
 	"knative.dev/pkg/signals"
 
 	// This defines the shared main for injected controllers.
@@ -30,11 +31,14 @@ import (
 )
 
 var (
-	probeAddr = flag.String("probe-addr", "", "run this binary as a health check against the given address")
+	fSet      = flag.NewFlagSet("probe", flag.ExitOnError)
+	probeAddr = fSet.String("probe-addr", "", "run this binary as a health check against the given address")
 )
 
 func main() {
-	flag.Parse()
+	env := new(environment.ClientConfig)
+	env.InitFlags(fSet)
+	_ = fSet.Parse(os.Args[1:])
 
 	// Run the binary as a health checker if the respective flag is given.
 	if *probeAddr != "" {
