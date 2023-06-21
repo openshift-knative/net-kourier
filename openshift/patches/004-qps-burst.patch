@@ -1,3 +1,18 @@
+diff --git a/config/300-controller.yaml b/config/300-controller.yaml
+index f2ed4fb2..54753f82 100644
+--- a/config/300-controller.yaml
++++ b/config/300-controller.yaml
+@@ -45,6 +45,10 @@ spec:
+               value: ""
+             - name: CERTS_SECRET_NAME
+               value: ""
++            - name: KUBE_API_BURST
++              value: "200"
++            - name: KUBE_API_QPS
++              value: "200"
+             - name: SYSTEM_NAMESPACE
+               valueFrom:
+                 fieldRef:
 diff --git a/vendor/knative.dev/pkg/environment/client_config.go b/vendor/knative.dev/pkg/environment/client_config.go
 index 04d4220b..aef33927 100644
 --- a/vendor/knative.dev/pkg/environment/client_config.go
