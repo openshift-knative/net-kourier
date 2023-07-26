@@ -1,0 +1,13 @@
+diff --git a/config/200-bootstrap.yaml b/config/200-bootstrap.yaml
+index 890c66b1..8596712a 100644
+--- a/config/200-bootstrap.yaml
++++ b/config/200-bootstrap.yaml
+@@ -103,7 +103,7 @@ data:
+                 endpoint:
+                   address:
+                     socket_address:
+-                      address: "net-kourier-controller.knative-serving"
++                      address: "net-kourier-controller.knative-serving-ingress"
+                       port_value: 18000
+           type: STRICT_DNS
+     admin:

@@ -1,0 +1,31 @@
+diff --git a/config/300-controller.yaml b/config/300-controller.yaml
+index 4bc13c54..2ca338fc 100644
+--- a/config/300-controller.yaml
++++ b/config/300-controller.yaml
+@@ -73,8 +73,6 @@ spec:
+             capabilities:
+               drop:
+                 - ALL
+-            seccompProfile:
+-              type: RuntimeDefault
+           resources:
+             requests:
+               cpu: 200m
+diff --git a/config/300-gateway.yaml b/config/300-gateway.yaml
+index ba2cbe4c..cd9ce5c2 100644
+--- a/config/300-gateway.yaml
++++ b/config/300-gateway.yaml
+@@ -72,13 +72,9 @@ spec:
+             allowPrivilegeEscalation: false
+             readOnlyRootFilesystem: false
+             runAsNonRoot: true
+-            runAsUser: 65534
+-            runAsGroup: 65534
+             capabilities:
+               drop:
+                 - ALL
+-            seccompProfile:
+-              type: RuntimeDefault
+           volumeMounts:
+             - name: config-volume
+               mountPath: /tmp/config
