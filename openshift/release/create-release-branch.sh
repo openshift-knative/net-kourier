@@ -28,11 +28,7 @@ git checkout openshift/main -- openshift OWNERS
 git add openshift OWNERS
 git commit -m "Add openshift specific files."
 
-# Drop the release-suffix and add the micro version with '0'.
-# e.g. release-1.9 => 1.9.0
-VERSION=${release#"release-"}.0
-
-openshift/release/download_release_artifacts.sh ${VERSION}
+openshift/release/download_release_artifacts.sh ${release}
 git add .
 git commit -am ":fire: Generate artifacts."
 
