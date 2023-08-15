@@ -535,7 +535,7 @@ spec:
               memory: 200Mi
             limits:
               cpu: 500m
-              memory: 500Mi
+              memory: 750Mi
       volumes:
         - name: config-volume
           configMap:
