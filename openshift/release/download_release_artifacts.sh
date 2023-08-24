@@ -45,7 +45,6 @@ mkdir -p "$YAML_OUTPUT_DIR"
 # clean up before applying patch
 git apply -R "${patches_path}"/* || true
 
-# TODO: [SRVKS-610] 001-service-location.patch should be replaced by operator instead of sed.
 git apply "${patches_path}"/*
 
 resolve_resources "openshift/release/extra/ config" "$KOURIER_YAML"
