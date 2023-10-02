@@ -202,7 +202,7 @@ metadata:
     app.kubernetes.io/version: devel
     app.kubernetes.io/name: knative-serving
 spec:
-  minAvailable: 1
+  minAvailable: 80%
   selector:
     matchLabels:
       app: 3scale-kourier-gateway
