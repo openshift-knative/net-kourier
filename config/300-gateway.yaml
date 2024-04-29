@@ -72,8 +72,6 @@ spec:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: false
             runAsNonRoot: true
-            runAsUser: 65534
-            runAsGroup: 65534
             capabilities:
               drop:
                 - ALL
@@ -206,7 +204,7 @@ metadata:
     app.kubernetes.io/version: devel
     app.kubernetes.io/name: knative-serving
 spec:
-  minAvailable: 80%
+  minAvailable: 1
   selector:
     matchLabels:
       app: 3scale-kourier-gateway
