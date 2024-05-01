@@ -623,6 +623,26 @@ spec:
     matchLabels:
       app: 3scale-kourier-gateway
 ---
+apiVersion: networking.internal.knative.dev/v1alpha1
+kind: Certificate
+metadata:
+  annotations:
+    networking.knative.dev/certificate.class: cert-manager.certificate.networking.knative.dev
+  labels:
+    networking.knative.dev/certificate-type: system-internal
+    knative.dev/install-knative-certificate: "true"
+    app.kubernetes.io/name: knative-serving
+    app.kubernetes.io/component: net-kourier
+    networking.knative.dev/ingress-provider: kourier
+    app.kubernetes.io/version: "release-v1.14"
+  name: routing-serving-certs
+  namespace: knative-serving
+spec:
+  dnsNames:
+    - kn-routing
+  secretName: routing-serving-certs
+# The data is populated when system-internal-tls is enabled.
+---
 # Copyright 2018 The Knative Authors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
