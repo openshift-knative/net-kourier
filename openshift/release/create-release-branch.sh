@@ -24,8 +24,13 @@ git checkout upstream/"${upstream_release}"
 
 # Copy the openshift extra files from the OPENSHIFT/main branch.
 git fetch openshift main
-git checkout openshift/main -- openshift OWNERS
-git add openshift OWNERS
+git checkout openshift/main -- openshift OWNERS Makefile
+
+tag=${release/release-/}
+yq write --inplace openshift/project.yaml project.tag "knative-$tag"
+make generate-release
+
+git add openshift OWNERS Makefile
 git commit -m "Add openshift specific files."
 
 openshift/release/download_release_artifacts.sh "${release}"
