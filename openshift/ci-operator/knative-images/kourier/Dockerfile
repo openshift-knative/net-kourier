@@ -26,6 +26,8 @@ LABEL \
       summary="Red Hat OpenShift Serverless 1 Net Kourier Kourier" \
       maintainer="serverless-support@redhat.com" \
       description="Red Hat OpenShift Serverless 1 Net Kourier Kourier" \
-      io.k8s.display-name="Red Hat OpenShift Serverless 1 Net Kourier Kourier"
+      io.k8s.display-name="Red Hat OpenShift Serverless 1 Net Kourier Kourier" \
+      io.k8s.description="Red Hat OpenShift Serverless Net Kourier Kourier" \
+      io.openshift.tags="kourier"
 
 ENTRYPOINT ["/ko-app/kourier"]
