@@ -13,9 +13,9 @@ require (
 	github.com/pires/go-proxyproto v0.6.1
 	go.uber.org/zap v1.27.0
 	golang.org/x/sync v0.10.0
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240528184218-531527333157
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20250212204824-5a70512c5d8b
 	google.golang.org/grpc v1.65.0
-	google.golang.org/protobuf v1.34.1
+	google.golang.org/protobuf v1.36.4
 	gotest.tools/v3 v3.0.3
 	k8s.io/api v0.29.2
 	k8s.io/apimachinery v0.29.2
