@@ -5,7 +5,7 @@ go 1.22.7
 require (
 	github.com/envoyproxy/go-control-plane v0.13.1
 	github.com/golang/protobuf v1.5.4
-	github.com/google/go-cmp v0.6.0
+	github.com/google/go-cmp v0.7.0
 	github.com/google/uuid v1.6.0
 	github.com/jaegertracing/jaeger v1.47.0
 	github.com/kelseyhightower/envconfig v1.4.0
