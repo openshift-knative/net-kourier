@@ -9,4 +9,4 @@ go run github.com/openshift-knative/hack/cmd/generate@latest \
   --generators dockerfile \
   --includes cmd \
   --app-file-fmt "/ko-app/%s" \
-  --dockerfile-image-builder-fmt "registry.ci.openshift.org/openshift/release:rhel-8-release-golang-%s-openshift-4.17"
+  --dockerfile-image-builder-fmt "registry.ci.openshift.org/openshift/release:rhel-9-release-golang-1.23-openshift-4.19"
