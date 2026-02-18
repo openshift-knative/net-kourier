@@ -19,10 +19,10 @@ require (
 	google.golang.org/grpc v1.77.0
 	google.golang.org/protobuf v1.36.10
 	gotest.tools/v3 v3.0.3
-	k8s.io/api v0.34.3
-	k8s.io/apimachinery v0.34.3
-	k8s.io/client-go v0.34.3
-	k8s.io/code-generator v0.34.3
+	k8s.io/api v0.34.4
+	k8s.io/apimachinery v0.34.4
+	k8s.io/client-go v0.34.4
+	k8s.io/code-generator v0.34.4
 	k8s.io/utils v0.0.0-20250604170112-4c0f3b243397
 	knative.dev/hack v0.0.0-20260120115810-bf6758cba446
 	knative.dev/networking v0.0.0-20260120131110-a7cdca238a0d
