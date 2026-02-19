@@ -11,16 +11,16 @@ require (
 	github.com/kelseyhightower/envconfig v1.4.0
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/pires/go-proxyproto v0.6.1
-	go.uber.org/zap v1.27.0
+	go.uber.org/zap v1.27.1
 	golang.org/x/sync v0.10.0
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240528184218-531527333157
 	google.golang.org/grpc v1.65.0
 	google.golang.org/protobuf v1.34.1
 	gotest.tools/v3 v3.0.3
-	k8s.io/api v0.29.2
-	k8s.io/apimachinery v0.29.2
-	k8s.io/client-go v0.29.2
-	k8s.io/code-generator v0.29.2
+	k8s.io/api v0.29.15
+	k8s.io/apimachinery v0.29.15
+	k8s.io/client-go v0.29.15
+	k8s.io/code-generator v0.29.15
 	knative.dev/hack v0.0.0-20240704013904-b9799599afcf
 	knative.dev/networking v0.0.0-20240716111826-bab7f2a3e556
 	knative.dev/pkg v0.0.0-20240716082220-4355f0c73608
