@@ -4,6 +4,9 @@ set -euo pipefail
 
 repo_root_dir=$(dirname "$(realpath "${BASH_SOURCE[0]}")")/..
 
+echo "Clean up unused upstream actions"
+rm -f "${repo_root_dir}/.github/workflows/kind-e2e-upgrade.yaml"
+
 go run github.com/openshift-knative/hack/cmd/generate@latest \
   --root-dir "${repo_root_dir}" \
   --generators dockerfile \
