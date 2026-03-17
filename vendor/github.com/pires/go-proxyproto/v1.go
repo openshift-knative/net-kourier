@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"fmt"
 	"net"
+	"net/netip"
 	"strconv"
 	"strings"
 )
@@ -70,7 +71,7 @@ func parseVersion1(reader *bufio.Reader) (*Header, error) {
 	for {
 		b, err := reader.ReadByte()
 		if err != nil {
-			return nil, fmt.Errorf(ErrCantReadVersion1Header.Error()+": %v", err)
+			return nil, fmt.Errorf("%w: %w", ErrCantReadVersion1Header, err)
 		}
 		buf = append(buf, b)
 		if b == '\n' {
@@ -215,17 +216,31 @@ func (header *Header) formatVersion1() ([]byte, error) {
 
 func parseV1PortNumber(portStr string) (int, error) {
 	port, err := strconv.Atoi(portStr)
-	if err != nil || port < 0 || port > 65535 {
+	if err != nil {
+		return 0, fmt.Errorf("%w: %w", ErrInvalidPortNumber, err)
+	}
+	if port < 0 || port > 65535 {
 		return 0, ErrInvalidPortNumber
 	}
 	return port, nil
 }
 
-func parseV1IPAddress(protocol AddressFamilyAndProtocol, addrStr string) (addr net.IP, err error) {
-	addr = net.ParseIP(addrStr)
-	tryV4 := addr.To4()
-	if (protocol == TCPv4 && tryV4 == nil) || (protocol == TCPv6 && tryV4 != nil) {
-		err = ErrInvalidAddress
+func parseV1IPAddress(protocol AddressFamilyAndProtocol, addrStr string) (net.IP, error) {
+	addr, err := netip.ParseAddr(addrStr)
+	if err != nil {
+		return nil, fmt.Errorf("%w: %w", ErrInvalidAddress, err)
 	}
-	return
+
+	switch protocol {
+	case TCPv4:
+		if addr.Is4() {
+			return net.IP(addr.AsSlice()), nil
+		}
+	case TCPv6:
+		if addr.Is6() || addr.Is4In6() {
+			return net.IP(addr.AsSlice()), nil
+		}
+	}
+
+	return nil, ErrInvalidAddress
 }
