@@ -37,14 +37,11 @@ function resolve_file() {
 
 readonly YAML_OUTPUT_DIR="openshift/release/artifacts/"
 readonly KOURIER_YAML=${YAML_OUTPUT_DIR}/net-kourier.yaml
-readonly patches_path="${SCRIPT_DIR}/../patches"
-
 # Clean up
 rm -rf "$YAML_OUTPUT_DIR"
 mkdir -p "$YAML_OUTPUT_DIR"
-# clean up before applying patch
-git apply -R "${patches_path}"/* || true
-
-git apply "${patches_path}"/*
 
 resolve_resources "openshift/release/extra/ config" "$KOURIER_YAML"
+
+# Apply OpenShift-specific modifications to the resolved artifact
+"${SCRIPT_DIR}/../patches/apply-patches.sh" "$KOURIER_YAML"
