@@ -12,8 +12,8 @@ require (
 	github.com/jaegertracing/jaeger-idl v0.6.0
 	github.com/kelseyhightower/envconfig v1.4.0
 	github.com/patrickmn/go-cache v2.1.0+incompatible
-	github.com/pires/go-proxyproto v0.11.0
-	go.uber.org/zap v1.27.1
+	github.com/pires/go-proxyproto v0.12.0
+	go.uber.org/zap v1.28.0
 	golang.org/x/sync v0.20.0
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260120221211-b8f7ae30c516
 	google.golang.org/grpc v1.80.0
