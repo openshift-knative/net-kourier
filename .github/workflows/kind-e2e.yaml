@@ -45,7 +45,7 @@ jobs:
         path: ./src/knative.dev/net-kourier
 
     - name: Setup KinD
-      uses: chainguard-dev/actions/setup-kind@main
+      uses: chainguard-dev/actions/setup-kind@v1.6.19
       with:
         k8s-version: ${{ matrix.k8s-version }}
         kind-worker-count: 1
