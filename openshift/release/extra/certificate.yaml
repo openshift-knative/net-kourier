@@ -1,0 +1,19 @@
+apiVersion: networking.internal.knative.dev/v1alpha1
+kind: Certificate
+metadata:
+  annotations:
+    networking.knative.dev/certificate.class: cert-manager.certificate.networking.knative.dev
+  labels:
+    networking.knative.dev/certificate-type: system-internal
+    knative.dev/install-knative-certificate: "true"
+    app.kubernetes.io/name: knative-serving
+    app.kubernetes.io/component: net-kourier
+    networking.knative.dev/ingress-provider: kourier
+    app.kubernetes.io/version: devel
+  name: routing-serving-certs
+  namespace: knative-serving
+spec:
+  dnsNames:
+    - kn-routing
+  secretName: routing-serving-certs
+# The data is populated when system-internal-tls is enabled.

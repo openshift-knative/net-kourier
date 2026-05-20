@@ -1,0 +1,13 @@
+diff --git a/config/300-gateway.yaml b/config/300-gateway.yaml
+index 4a71d3eb..6c9df8f9 100644
+--- a/config/300-gateway.yaml
++++ b/config/300-gateway.yaml
+@@ -72,8 +72,6 @@ spec:
+             allowPrivilegeEscalation: false
+             readOnlyRootFilesystem: false
+             runAsNonRoot: true
+-            runAsUser: 65534
+-            runAsGroup: 65534
+             capabilities:
+               drop:
+                 - ALL
