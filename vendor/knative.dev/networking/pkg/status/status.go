@@ -72,6 +72,12 @@ func init() {
 
 var dialContext = (&net.Dialer{Timeout: probeTimeout}).DialContext
 
+type probeAddrKey struct{}
+
+func withProbeAddr(ctx context.Context, addr string) context.Context {
+	return context.WithValue(ctx, probeAddrKey{}, addr)
+}
+
 // ingressState represents the probing state of an Ingress
 type ingressState struct {
 	hash string
@@ -144,6 +150,8 @@ type Prober struct {
 	readyCallback func(*v1alpha1.Ingress)
 
 	probeConcurrency int
+
+	transport *http.Transport
 }
 
 // NewProber creates a new instance of Prober
@@ -152,6 +160,19 @@ func NewProber(
 	targetLister ProbeTargetLister,
 	readyCallback func(*v1alpha1.Ingress),
 ) *Prober {
+	transport := http.DefaultTransport.(*http.Transport).Clone()
+	transport.TLSClientConfig = &tls.Config{
+		//nolint:gosec
+		InsecureSkipVerify: true,
+	}
+	transport.DisableKeepAlives = true
+	transport.DialContext = func(ctx context.Context, network, addr string) (net.Conn, error) {
+		if target, ok := ctx.Value(probeAddrKey{}).(string); ok {
+			addr = target
+		}
+		return dialContext(ctx, network, addr)
+	}
+
 	return &Prober{
 		logger:        logger,
 		ingressStates: make(map[types.NamespacedName]*ingressState),
@@ -167,6 +188,7 @@ func NewProber(
 		targetLister:     targetLister,
 		readyCallback:    readyCallback,
 		probeConcurrency: probeConcurrency,
+		transport:        transport,
 	}
 }
 
@@ -378,29 +400,16 @@ func (m *Prober) processWorkItem() bool {
 	item.logger.Infof("Processing probe for %s, IP: %s:%s (depth: %d)",
 		item.url, item.podIP, item.podPort, m.workQueue.Len())
 
-	transport := http.DefaultTransport.(*http.Transport).Clone()
-	transport.TLSClientConfig = &tls.Config{
-		//nolint:gosec
-		// We only want to know that the Gateway is configured, not that the configuration is valid.
-		// Therefore, we can safely ignore any TLS certificate validation.
-		InsecureSkipVerify: true,
-	}
-	transport.DialContext = func(ctx context.Context, network, addr string) (conn net.Conn, e error) {
-		// Requests with the IP as hostname and the Host header set do no pass client-side validation
-		// because the HTTP client validates that the hostname (not the Host header) matches the server
-		// TLS certificate Common Name or Alternative Names. Therefore, http.Request.URL is set to the
-		// hostname and it is substituted it here with the target IP.
-		return dialContext(ctx, network, net.JoinHostPort(item.podIP, item.podPort))
-	}
-
 	probeURL := deepCopy(item.url)
 	probeURL.Path = path.Join(probeURL.Path, nethttp.HealthCheckPath)
 
 	ctx, cancel := context.WithTimeout(item.context, probeTimeout)
 	defer cancel()
+	ctx = withProbeAddr(ctx, net.JoinHostPort(item.podIP, item.podPort))
+
 	ok, err := prober.Do(
 		ctx,
-		transport,
+		m.transport,
 		probeURL.String(),
 		prober.WithHeader(header.UserAgentKey, header.IngressReadinessUserAgent),
 		prober.WithHeader(header.ProbeKey, header.ProbeValue),
@@ -421,6 +430,7 @@ func (m *Prober) processWorkItem() bool {
 		item.logger.Errorf("Probing of %s failed, IP: %s:%s, ready: %t, error: %v (depth: %d)",
 			item.url, item.podIP, item.podPort, ok, err, m.workQueue.Len())
 	} else {
+		m.workQueue.Forget(obj)
 		m.onProbingSuccess(item.ingressState, item.podState)
 	}
 	return true
