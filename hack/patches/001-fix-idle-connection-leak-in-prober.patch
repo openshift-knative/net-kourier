@@ -1,0 +1,33 @@
+From 61c8882f1df84f42b51b25f737f518ae8b823862 Mon Sep 17 00:00:00 2001
+From: David Simansky <dsimansk@redhat.com>
+Date: Wed, 27 May 2026 11:26:51 +0200
+Subject: [PATCH] Fix idle connection leak in prober
+
+Upstream: https://github.com/knative/networking/pull/XXX
+---
+ vendor/knative.dev/networking/pkg/status/status.go | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/vendor/knative.dev/networking/pkg/status/status.go b/vendor/knative.dev/networking/pkg/status/status.go
+index 4d7ebe51..8bc8d713 100644
+--- a/vendor/knative.dev/networking/pkg/status/status.go
++++ b/vendor/knative.dev/networking/pkg/status/status.go
+@@ -385,6 +385,8 @@ func (m *Prober) processWorkItem() bool {
+ 		// Therefore, we can safely ignore any TLS certificate validation.
+ 		InsecureSkipVerify: true,
+ 	}
++	// Disable keep-alives to prevent connection leak since a new transport is created per work item.
++	transport.DisableKeepAlives = true
+ 	transport.DialContext = func(ctx context.Context, network, addr string) (conn net.Conn, e error) {
+ 		// Requests with the IP as hostname and the Host header set do no pass client-side validation
+ 		// because the HTTP client validates that the hostname (not the Host header) matches the server
+@@ -421,6 +423,7 @@ func (m *Prober) processWorkItem() bool {
+ 		item.logger.Errorf("Probing of %s failed, IP: %s:%s, ready: %t, error: %v (depth: %d)",
+ 			item.url, item.podIP, item.podPort, ok, err, m.workQueue.Len())
+ 	} else {
++		m.workQueue.Forget(obj)
+ 		m.onProbingSuccess(item.ingressState, item.podState)
+ 	}
+ 	return true
+--
+2.54.0

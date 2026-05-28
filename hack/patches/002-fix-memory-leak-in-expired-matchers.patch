@@ -1,0 +1,36 @@
+From d194ed45773291c0a0927639fecfb828efaa3fea Mon Sep 17 00:00:00 2001
+From: David Simansky <dsimansk@redhat.com>
+Date: Wed, 27 May 2026 10:47:34 +0200
+Subject: [PATCH] Fix memory leak in expired matchers
+
+Upstream: https://github.com/knative/pkg/pull/XXX
+---
+ vendor/knative.dev/pkg/tracker/enqueue.go | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/vendor/knative.dev/pkg/tracker/enqueue.go b/vendor/knative.dev/pkg/tracker/enqueue.go
+index 88d0254b3..f04928d3c 100644
+--- a/vendor/knative.dev/pkg/tracker/enqueue.go
++++ b/vendor/knative.dev/pkg/tracker/enqueue.go
+@@ -277,8 +277,8 @@ func (i *impl) GetObservers(obj interface{}) []types.NamespacedName {
+ 				keys = append(keys, key)
+ 			}
+ 		}
+-		if len(s) == 0 {
+-			delete(i.exact, ref)
++		if len(ms) == 0 {
++			delete(i.inexact, ref)
+ 		}
+ 	}
+
+@@ -309,7 +309,7 @@ func (i *impl) OnDeletedObserver(obj interface{}) {
+ 	for ref, matchers := range i.inexact {
+ 		delete(matchers, key)
+ 		if len(matchers) == 0 {
+-			delete(i.exact, ref)
++			delete(i.inexact, ref)
+ 		}
+ 	}
+ }
+--
+2.54.0
