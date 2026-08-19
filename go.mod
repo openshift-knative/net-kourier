@@ -17,12 +17,12 @@ require (
 	golang.org/x/sync v0.20.0
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260401024825-9d38bb4040a9
 	google.golang.org/grpc v1.80.0
-	google.golang.org/protobuf v1.36.11
+	google.golang.org/protobuf v1.36.12
 	gotest.tools/v3 v3.0.3
-	k8s.io/api v0.35.4
-	k8s.io/apimachinery v0.35.4
-	k8s.io/client-go v0.35.4
-	k8s.io/code-generator v0.35.4
+	k8s.io/api v0.35.7
+	k8s.io/apimachinery v0.35.7
+	k8s.io/client-go v0.35.7
+	k8s.io/code-generator v0.35.7
 	k8s.io/utils v0.0.0-20251002143259-bc988d571ff4
 	knative.dev/hack v0.0.0-20260421155212-aeb7b4a9bf96
 	knative.dev/networking v0.0.0-20260422140718-e9578ef11562
